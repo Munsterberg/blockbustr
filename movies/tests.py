@@ -76,10 +76,6 @@ class MovieFormTest(TestCase):
     def setUp(self):
         self.movie = Movie.objects.create(title="Test Movie", description="A simple test movie for the form", image="an image here")
 
-
-#    def test_init(self):
-#        MovieForm(movie=self.movie)
-
     def test_valid_data(self):
         form = MovieForm({
             'title': "Test Movie",
@@ -91,4 +87,4 @@ class MovieFormTest(TestCase):
         self.assertEqual(movie.title, "Test Movie")
         self.assertEqual(movie.description, "A simple test movie for the form")
         self.assertEqual(movie.image, "an image here")
-    
+   
