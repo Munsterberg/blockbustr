@@ -68,3 +68,5 @@ class MovieViewsTests(TestCase):
     def test_movie_new_view(self):
         res = self.client.get(reverse('movies:new'))
         self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res, 'movies/new.html')
+        self.assertContains(res, "Add New Movie")

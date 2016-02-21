@@ -13,4 +13,4 @@ def show(request, pk):
     return render(request, 'movies/show.html', { 'movie': movie })
 
 def new(request):
-    return HttpResponse('You have reached the new view.')
+    return render(request, 'movies/new.html')
