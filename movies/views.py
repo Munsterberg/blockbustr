@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from .models import Movie
 
 
@@ -9,5 +9,5 @@ def movie_list(request):
     return render(request, 'movies/index.html', { 'movies': movies })
 
 def show(request, pk):
-    movie = Movie.objects.get(pk=pk)
+    movie = get_object_or_404(Movie, pk=pk)
     return render(request, 'movies/show.html', { 'movie': movie })
