@@ -15,16 +15,11 @@ def show(request, pk):
 
 def new(request):
     if request.method == 'POST':
-        print(request)
         form = MovieForm(request.POST)
         if form.is_valid():
             movie = form.save(commit=False)
             movie.save()
-            print("SUCCESS")
             return redirect('/movies/')
-        else:
-            print("FAILURE")
     else:
-        print("TEST")
         form = MovieForm()
     return render(request, 'movies/new.html', { 'form': form })
