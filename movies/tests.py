@@ -72,6 +72,23 @@ class MovieViewsTests(TestCase):
         self.assertTemplateUsed(res, 'movies/new.html')
         self.assertContains(res, 'Add New Movie')
 
-#class MovieFormTest(TestCase):
-#    def setUp(self):
-#        movie = Movie.objects.create()
+class MovieFormTest(TestCase):
+    def setUp(self):
+        self.movie = Movie.objects.create(title="Test Movie", description="A simple test movie for the form", image="an image here")
+
+
+#    def test_init(self):
+#        MovieForm(movie=self.movie)
+
+    def test_valid_data(self):
+        form = MovieForm({
+            'title': "Test Movie",
+            'description': "A simple test movie for the form",
+            'image': "an image here"
+            })
+        self.assertTrue(form.is_valid())
+        movie = form.save()
+        self.assertEqual(movie.title, "Test Movie")
+        self.assertEqual(movie.description, "A simple test movie for the form")
+        self.assertEqual(movie.image, "an image here")
+    
