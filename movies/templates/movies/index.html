@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>List of Movies</h1>
+    {%  for movie in movies %}
+        <h2>{{ movie.title }}</h2>
+        <p>{{ movie.description }}</p>
+    {% endfor %}
+</body>
+</html>
+
