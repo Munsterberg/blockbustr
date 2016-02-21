@@ -11,3 +11,6 @@ def movie_list(request):
 def show(request, pk):
     movie = get_object_or_404(Movie, pk=pk)
     return render(request, 'movies/show.html', { 'movie': movie })
+
+def new(request):
+    return HttpResponse('You have reached the new view.')
