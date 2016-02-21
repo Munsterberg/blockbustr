@@ -54,9 +54,13 @@ class MovieViewsTests(TestCase):
         self.assertEqual(res.status_code, 200)
         self.assertIn(self.movie, res.context['movies'])
         self.assertIn(self.movie2, res.context['movies'])
+        self.assertTemplateUsed(res, 'movies/index.html')
+        self.assertContains(res, self.movie.title)
 
     def test_movie_show_view(self):
         key = self.movie.id
         res = self.client.get(reverse('movies:show', args=[key]))
         self.assertEqual(res.status_code, 200)
         self.assertEqual(self.movie, res.context['movie'])
+        self.assertTemplateUsed(res, 'movies/show.html')
+        self.assertContains(res, self.movie.title)
