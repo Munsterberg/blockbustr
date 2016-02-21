@@ -1,6 +1,7 @@
 from django.http import HttpResponse
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import Movie
+from .forms import MovieForm
 
 
 # Create your views here.
@@ -13,4 +14,17 @@ def show(request, pk):
     return render(request, 'movies/show.html', { 'movie': movie })
 
 def new(request):
-    return render(request, 'movies/new.html')
+    if request.method == 'POST':
+        print(request)
+        form = MovieForm(request.POST)
+        if form.is_valid():
+            movie = form.save(commit=False)
+            movie.save()
+            print("SUCCESS")
+            return redirect('/movies/')
+        else:
+            print("FAILURE")
+    else:
+        print("TEST")
+        form = MovieForm()
+    return render(request, 'movies/new.html', { 'form': form })

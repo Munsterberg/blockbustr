@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from .models import Movie, Comment
+from .forms import MovieForm
 
 # Create your tests here.
 
@@ -69,4 +70,8 @@ class MovieViewsTests(TestCase):
         res = self.client.get(reverse('movies:new'))
         self.assertEqual(res.status_code, 200)
         self.assertTemplateUsed(res, 'movies/new.html')
-        self.assertContains(res, "Add New Movie")
+        self.assertContains(res, 'Add New Movie')
+
+#class MovieFormTest(TestCase):
+#    def setUp(self):
+#        movie = Movie.objects.create()
