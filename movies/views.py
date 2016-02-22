@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Movie
-from .forms import MovieForm
+from .forms import MovieForm, CommentForm
 
 
 # Create your views here.
@@ -25,4 +25,5 @@ def new(request):
     return render(request, 'movies/new.html', { 'form': form })
 
 def comment_new(request):
-    return HttpResponse('New Comment Page!')
+    form = CommentForm()
+    return render(request, 'movies/comments/new.html', { 'form': form })

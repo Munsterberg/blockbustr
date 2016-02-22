@@ -72,6 +72,12 @@ class MovieViewsTests(TestCase):
         self.assertTemplateUsed(res, 'movies/new.html')
         self.assertContains(res, 'Add New Movie')
 
+    def test_movie_comment_new_view(self):
+        res = self.client.get(reverse('movies:comment_new'))
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res, 'movies/comments/new.html')
+        self.assertContains(res, 'Comment Form')
+
 class MovieFormTest(TestCase):
     def setUp(self):
         self.movie = Movie.objects.create(title="Test Movie", description="A simple test movie for the form", image="an image here")

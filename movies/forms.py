@@ -19,4 +19,4 @@ class CommentForm(ModelForm):
      
     class Meta:
         model = Comment
-        exclude = ('created_at',)
+        exclude = ('created_at', 'movie')
