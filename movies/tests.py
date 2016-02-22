@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.utils import timezone
 from django.core.urlresolvers import reverse
 from .models import Movie, Comment
-from .forms import MovieForm
+from .forms import MovieForm, CommentForm
 
 # Create your tests here.
 
@@ -87,4 +87,16 @@ class MovieFormTest(TestCase):
         self.assertEqual(movie.title, "Test Movie")
         self.assertEqual(movie.description, "A simple test movie for the form")
         self.assertEqual(movie.image, "an image here")
-   
+
+class CommentFormTest(TestCase):
+    def setUp(self):
+        self.movie = Movie.objects.create(title="Comment Movie Test", description="A movie for the comment tests", image="no image")
+        self.comment = Comment.objects.create(author="Jake", content="A cool movie", movie=self.movie)
+
+    def test_valid_data(self):
+        form = CommentForm({
+            'author': "Jake",
+            'content': "A cool movie",
+            'movie': self.movie
+            })
+        self.assertTrue(form.is_valid())

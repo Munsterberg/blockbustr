@@ -23,3 +23,6 @@ def new(request):
     else:
         form = MovieForm()
     return render(request, 'movies/new.html', { 'form': form })
+
+def comment_new(request):
+    return HttpResponse('New Comment Page!')
